@@ -22,15 +22,12 @@ namespace Assessment
 
         public void GoToPage(int page)
         {
-            if (currentPage >= page)
-            {
-                currentPage = page - 1;
-            }
+                currentPage = page - 1;   
         }
 
         public void LastPage()
         {
-            currentPage = pageSize-1;
+            currentPage = pageSize;
         }
 
         public void NextPage()
@@ -60,12 +57,13 @@ namespace Assessment
 
         public void SortAsc()
         {
-            data.Sort();
+            data.Skip(currentPage * pageSize).ToList().OrderBy(x => x).Take(pageSize);
         }
 
         public void SortDsc()
         {
-            data.Sort((a, b) => b.CompareTo(a));
+            data.Skip(currentPage * pageSize).ToList().OrderByDescending(x => x).Take(pageSize);
+            //data.Sort((a, b) => b.CompareTo(a));
         }
     }
 }

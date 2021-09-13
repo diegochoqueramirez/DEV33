@@ -51,7 +51,7 @@ namespace AssessmentConsole
             string pageSize = GetOption("Type the Page size");
             IElementsProvider<string> provider = new StringProvider();
             IPagination<string> pagination = new PaginationString(data, int.Parse(pageSize), provider);
-            SortData(pagination);
+            //SortData(pagination);
             DoNavigation(pagination);
         }
 
@@ -84,6 +84,8 @@ namespace AssessmentConsole
                 3. Previous page
                 4. Last page
                 5. Go to page
+                6: OderAsc
+                7: OrderDesc
                 0. Go Back
                 ");                                
                 switch (option) 
@@ -98,11 +100,17 @@ namespace AssessmentConsole
                         pagination.PrevPage();
                         break;
                     case "4":                        
-                        pagination.LastPage();
+                        pagination.LastPage();                       
                         break;
                     case "5":
                         int page = Int32.Parse(GetOption("Please enter page index"));
                         pagination.GoToPage(page);
+                        break;
+                    case "6":
+                        pagination.SortAsc();
+                        break;
+                    case "7":
+                        pagination.SortDsc();
                         break;
                     case "0":
                         exit = false;

@@ -37,7 +37,7 @@ namespace AssessmentTest
             IElementsProvider<string> provider = new StringProvider();
             IPagination<string> pagination = new PaginationString(COMMA_SAMPLE, 5, provider);
             pagination.PrevPage();
-            string[] expectedElements = { "v", "w", "x", "y", "z" };
+            string[] expectedElements = { "a", "b", "c", "d", "e" };
             CollectionAssert.AreEqual(expectedElements, pagination.GetVisibleItems().ToList());
         }
 
@@ -47,7 +47,7 @@ namespace AssessmentTest
             IElementsProvider<string> provider = new StringProvider();
             IPagination<string> pagination = new PaginationString(COMMA_SAMPLE, 5, provider);
             pagination.LastPage();
-            string [] expectedElements = {"v", "w", "x", "y", "z"};
+            string [] expectedElements = {"z"};
             CollectionAssert.AreEqual(expectedElements, pagination.GetVisibleItems().ToList());
         }
 
@@ -57,6 +57,7 @@ namespace AssessmentTest
             IElementsProvider<string> provider = new StringProvider();
             IPagination<string> pagination = new PaginationString(COMMA_SAMPLE, 10, provider);
             pagination.FirstPage();
+            var res = pagination.GetVisibleItems().ToList();
             string [] expectedElements = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
             CollectionAssert.AreEqual(expectedElements, pagination.GetVisibleItems().ToList());
         }
@@ -76,8 +77,8 @@ namespace AssessmentTest
         {
             IElementsProvider<string> provider = new StringProvider();
             IPagination<string> pagination = new PaginationString(COMMA_SAMPLE, 10, provider);
-            pagination.GoToPage(1);
-            string[] expectedElements = { "h", "i", "j", "k", "l", "m", "n", "o", "p", "q" };
+            pagination.GoToPage(2);
+            string[] expectedElements = { "k", "l", "m", "n", "o", "p", "q", "r", "s", "t" };
             CollectionAssert.AreEqual(expectedElements, pagination.GetVisibleItems().ToList());
         }
 
